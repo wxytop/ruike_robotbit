@@ -15,5 +15,9 @@
     "robotbit.RgbUltrasonic|block": "猫耳RGB超声波|引脚 %pin",
     "robotbit.HoleUltrasonic|block": "猫耳洞超声波|引脚 %pin",
     "robotbit.MatrixDraw|block": "LED矩阵 描点|X %x|Y %y",
-    "robotbit.MatrixClear|block": "清空 LED矩阵 "
+    "robotbit.MatrixClear|block": "清空 LED矩阵 ",
+    "robotbit.Sc5080BVoice_init|block": "sc50b0b 语音模块 初始化 S|%pin1|B %pin2",
+    "robotbit.PlayVoiceString|block": "sc5080b 播放声音|%index|",
+    "robotbit.PlayVoiceNumber|block": "sc5080b 播放数字| %num|"
+    
 }
