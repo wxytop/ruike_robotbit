@@ -1,0 +1,21 @@
+{
+    "name": "robotbit",
+    "version": "0.3.6",
+    "description": "Extension for ruike Robotbit",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "neopixel": "github:wxytop/pxt-neopixel"
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "_locales/zh-cn/robotbit-strings.json",
+        "_locales/zh-tw/robotbit-strings.json"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true,
+    "preferredEditor": "tsprj"
+}
