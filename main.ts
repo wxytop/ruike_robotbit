@@ -56,7 +56,24 @@ namespace robotbit {
         S7 = 0x07,
         S8 = 0x08
     }
-
+    // export enum DigitalPin {
+    //     P1 = 1,
+    //     P2 = 2,
+    //     P3 = 3,
+    //     P4 = 4,
+    //     P5 = 5,
+    //     P6 = 6,
+    //     P7 = 7,
+    //     P8 = 8,
+    //     P9 = 9,
+    //     P10 = 10,
+    //     P11 = 11,
+    //     P12 = 12,
+    //     P13 = 13,
+    //     P14 = 14,
+    //     P15 = 15,
+    //     P16 = 16
+    // }
     export enum Motors {
         M1A = 0x1,
         M1B = 0x2,
@@ -89,6 +106,22 @@ namespace robotbit {
         T4B0 = 1440,
         //% blockId="T5B0" block="5"
         T5B0 = 1800
+    }
+    export enum VoiceCode {
+        //% blockId="Father" block="爸爸"
+        Father = 0x01,
+        //% blockId="Mother" block="妈妈"
+        Mother = 0x02,
+        //% blockId="GrandF" block="爷爷"
+        GrandF = 0x03,
+        //% blockId="GrandM" block="奶奶"
+        GrandM = 0x04,
+        //% blockId="Brother" block="哥哥"
+        Brother = 0x05,
+        //% blockId="Sister" block="姐姐"
+        Sister = 0x06,
+        //% blockId="Uncle" block="叔叔"
+        T5B0 = 0x07
     }
 
     let initialized = false
@@ -275,6 +308,23 @@ namespace robotbit {
         setPwm(index + 7, 0, value)
     }
 
+      //% blockId=robotbit_sc5080BVoice_init block="sc50b0b voice init S|%pin1|B %pin2"
+    //% weight=90
+    export function Sc5080BVoice_init(pin1: DigitalPin, pin2: DigitalPin): void {
+
+    }
+    //% blockId=robotbit_voicePlayString block="sc5080b play voice|%index|"
+    //% weight=80
+    export function PlayVoiceString(index: VoiceCode): void {
+
+    }
+    //% blockId=robotbit_voicePlayNumber block="sc5080b play number | %num|"
+    //% weight=89
+    export function PlayVoiceNumber(num: number): void {
+
+    }
+
+
     //% blockId=robotbit_stepper_degree block="Stepper 28BYJ-48|%index|degree %degree"
     //% weight=90
     export function StepperDegree(index: Steppers, degree: number): void {
@@ -286,6 +336,7 @@ namespace robotbit {
         basic.pause(10240 * degree / 360);
         MotorStopAll()
     }
+    
 
 
     //% blockId=robotbit_stepper_turn block="Stepper 28BYJ-48|%index|turn %turn"
