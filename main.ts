@@ -353,7 +353,7 @@ namespace robotbit {
     }
     function voicePlayNumber(num: number)
     {
-        voicePlayString(num);
+        voicePlayString(0x5B);
         // let tmpTmp;
         // let tmpNumber, result;
         // tmpTmp = false;
