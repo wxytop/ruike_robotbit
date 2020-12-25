@@ -167,10 +167,9 @@ namespace robotbit {
     }
     function voicePlayNumber(num: number)
     {
-        let tmpTmp;
-        let tmpNumber, result;
-        tmpTmp = false;
-        tmpNumber = num;
+        let tmpTmp =false;
+        let tmpNumber = num; 
+        let result = 0;
         tmpNumber = num - (num / 10000) * 10000;
         for (let i = 3; i >= 1; i = i + (-1))
         {
