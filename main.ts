@@ -129,9 +129,9 @@ namespace robotbit {
     let neoStrip: neopixel.Strip;
     let matBuf = pins.createBuffer(17);
     let distanceBuf = 0;
-    let voice_s = 0;
-    let voice_b = 0;
-    function voice_init(s: number, b: number)
+    let voice_s = DigitalPin.P0;
+    let voice_b =  DigitalPin.P0;
+    function voice_init(s: DigitalPin, b: DigitalPin)
     {
         voice_s = s;
         voice_b = b;
@@ -374,17 +374,17 @@ namespace robotbit {
       //% blockId=robotbit_sc5080BVoice_init block="sc50b0b voice init S|%pin1|B %pin2"
     //% weight=90
     export function Sc5080BVoice_init(pin1: DigitalPin, pin2: DigitalPin): void {
-        this.voice_init(pin1,pin2);
+        voice_init(pin1,pin2);
     }
     //% blockId=robotbit_voicePlayString block="sc5080b play voice|%index|"
     //% weight=90
     export function PlayVoiceString(index: VoiceCode): void {
-        this.voicePlayString(index);
+        voicePlayString(index);
     }
     //% blockId=robotbit_voicePlayNumber block="sc5080b play number | %num|"
     //% weight=90
     export function PlayVoiceNumber(num: number): void {
-        this.voicePlayNumber(num);
+        voicePlayNumber(num);
     }
 
 
