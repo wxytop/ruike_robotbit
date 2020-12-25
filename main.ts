@@ -167,14 +167,15 @@ namespace robotbit {
     }
     function voicePlayNumber(num: number)
     {
-        let tmpTmp =false;
-        let tmpNumber = num; 
-        let result = 0;
+        let tmpTmp;
+        let tmpNumber, result;
+        tmpTmp = false;
+        tmpNumber = num;
         tmpNumber = num - (num / 10000) * 10000;
         for (let i = 3; i >= 1; i = i + (-1))
         {
-            result = tmpNumber /(10 ** i);
-            tmpNumber = tmpNumber - result * (10 ** i);
+            result = tmpNumber /Math.pow(10,i);
+            tmpNumber = tmpNumber - result * Math.pow(10,i);
             if (result)
             {
                 voicePlayString(result + 12);
@@ -185,7 +186,7 @@ namespace robotbit {
             {
                 voicePlayString(12);
             }
-        }
+        } 
         if (tmpNumber)
         {
             voicePlayString(tmpNumber + 12);
@@ -370,23 +371,24 @@ namespace robotbit {
         setPwm(index + 7, 0, value)
     }
 
-      //% blockId=robotbit_sc5080BVoice_init block="sc50b0b voice init S|%pin1|B %pin2"
-    //% weight=90
-    export function Sc5080BVoice_init(pin1: DigitalPin, pin2: DigitalPin): void {
-        voice_init(pin1,pin2);
-    }
-    //% blockId=robotbit_voicePlayString block="sc5080b play voice|%index|"
-    //% weight=90
-    export function PlayVoiceString(index: VoiceCode): void {
-        voicePlayString(index);
-    }
-    //% blockId=robotbit_voicePlayNumber block="sc5080b play number | %num|"
+     //% blockId=robotbit_voicePlayNumber block="sc5080b play number | %num|"
     //% weight=90
     export function PlayVoiceNumber(num: number): void {
         voicePlayNumber(num);
     }
 
-
+     //% blockId=robotbit_voicePlayString block="sc5080b play voice|%index|"
+    //% weight=90
+    export function PlayVoiceString(index: VoiceCode): void {
+        voicePlayString(index);
+    }
+   
+      //% blockId=robotbit_sc5080BVoice_init block="sc50b0b voice init S|%pin1|B %pin2"
+    //% weight=90
+    export function Sc5080BVoice_init(pin1: DigitalPin, pin2: DigitalPin): void {
+        voice_init(pin1,pin2);
+    }
+   
     //% blockId=robotbit_stepper_degree block="Stepper 28BYJ-48|%index|degree %degree"
     //% weight=90
     export function StepperDegree(index: Steppers, degree: number): void {
