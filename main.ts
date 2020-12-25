@@ -129,6 +129,69 @@ namespace robotbit {
     let neoStrip: neopixel.Strip;
     let matBuf = pins.createBuffer(17);
     let distanceBuf = 0;
+    let voice_s = 0;
+    let voice_b = 0;
+    function voice_init(s: number, b: number)
+    {
+        voice_s = s;
+        voice_b = b;
+        pins.setPull(b, PinPullMode.PullUp)
+        pins.setPull(s, PinPullMode.PullDown)
+    }
+    function voicePlayString(index: number)
+    {
+        pins.digitalWritePin(voice_s, 1);
+        control.waitMicros(1000);
+        pins.digitalWritePin(voice_s, 0);
+        control.waitMicros(5000);
+        for (let i = (0); i < 8; i = i + (1))
+        {
+            pins.digitalWritePin(voice_s, 1);
+            if (index & 0x01)
+            {
+                control.waitMicros(1500);
+                pins.digitalWritePin(voice_s, 0);
+                control.waitMicros(500);
+            }
+            else
+            {
+                control.waitMicros(500);
+                pins.digitalWritePin(voice_s, 0);
+                control.waitMicros(1500);
+            }
+            index >>= 1;
+        }
+        pins.digitalWritePin(voice_s, 1);
+        control.waitMicros(400);
+        while (!pins.digitalReadPin(voice_b));
+    }
+    function voicePlayNumber(num: number)
+    {
+        let tmpTmp;
+        let tmpNumber, result;
+        tmpTmp = false;
+        tmpNumber = num;
+        tmpNumber = num - (num / 10000) * 10000;
+        for (let i = 3; i >= 1; i = i + (-1))
+        {
+            result = tmpNumber /(10 ** i);
+            tmpNumber = tmpNumber - result * (10 ** i);
+            if (result)
+            {
+                voicePlayString(result + 12);
+                voicePlayString(21 + i);
+                tmpTmp = true;
+            }
+            else if (tmpTmp)
+            {
+                voicePlayString(12);
+            }
+        }
+        if (tmpNumber)
+        {
+            voicePlayString(tmpNumber + 12);
+        }
+    }
 
     function i2cwrite(addr: number, reg: number, value: number) {
         let buf = pins.createBuffer(2)
@@ -311,17 +374,17 @@ namespace robotbit {
       //% blockId=robotbit_sc5080BVoice_init block="sc50b0b voice init S|%pin1|B %pin2"
     //% weight=90
     export function Sc5080BVoice_init(pin1: DigitalPin, pin2: DigitalPin): void {
-
+        this.voice_init(pin1,pin2);
     }
     //% blockId=robotbit_voicePlayString block="sc5080b play voice|%index|"
-    //% weight=80
+    //% weight=90
     export function PlayVoiceString(index: VoiceCode): void {
-
+        this.voicePlayString(index);
     }
     //% blockId=robotbit_voicePlayNumber block="sc5080b play number | %num|"
-    //% weight=89
+    //% weight=90
     export function PlayVoiceNumber(num: number): void {
-
+        this.voicePlayNumber(num);
     }
 
 
