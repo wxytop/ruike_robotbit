@@ -353,54 +353,30 @@ namespace robotbit {
     }
     function voicePlayNumber(num: number)
     {
-        // pins.digitalWritePin(voice_s, 1);
-        // control.waitMicros(1000);
-        // pins.digitalWritePin(voice_s, 0);
-        // control.waitMicros(5000);
-        // for (let i = (0); i < 8; i = i + (1))
-        // {
-        //     pins.digitalWritePin(voice_s, 1);
-        //     if (num & 0x01)
-        //     {
-        //         control.waitMicros(1500);
-        //         pins.digitalWritePin(voice_s, 0);
-        //         control.waitMicros(500);
-        //     }
-        //     else
-        //     {
-        //         control.waitMicros(500);
-        //         pins.digitalWritePin(voice_s, 0);
-        //         control.waitMicros(1500);
-        //     }
-        //     num >>= 1;
-        // }
-        // pins.digitalWritePin(voice_s, 1);
-        // control.waitMicros(400);
-        // while (!pins.digitalReadPin(voice_b));
-        // let tmpTmp;
-        // let tmpNumber, result;
-        // tmpTmp = false;
-        // tmpNumber = num;
-        // tmpNumber = num - (num / 10000) * 10000;
-        // for (let i = 3; i >= 1; i = i + (-1))
-        // {
-        //     result = tmpNumber /Math.pow(10,i);
-        //     tmpNumber = tmpNumber - result * Math.pow(10,i);
-        //     if (result)
-        //     {
-        //         voicePlayString(result + 12);
-        //         voicePlayString(21 + i);
-        //         tmpTmp = true;
-        //     }
-        //     else if (tmpTmp)
-        //     {
-        //         voicePlayString(12);
-        //     }
-        // } 
-        // if (tmpNumber)
-        // {
-        //     voicePlayString(tmpNumber + 12);
-        // }
+        let tmpTmp;
+        let tmpNumber, result;
+        tmpTmp = false;
+        tmpNumber = num;
+        tmpNumber = num - (num / 10000) * 10000;
+        for (let i = 3; i >= 1; i = i + (-1))
+        {
+            result = tmpNumber /Math.pow(10,i);
+            tmpNumber = tmpNumber - result * Math.pow(10,i);
+            if (result)
+            {
+                voicePlayString(result + 12);
+                voicePlayString(21 + i);
+                tmpTmp = true;
+            }
+            else if (tmpTmp)
+            {
+                voicePlayString(12);
+            }
+        } 
+        if (tmpNumber)
+        {
+            voicePlayString(tmpNumber + 12);
+        }
     }
 
     function i2cwrite(addr: number, reg: number, value: number) {
