@@ -353,30 +353,30 @@ namespace robotbit {
     }
     function voicePlayNumber(num: number)
     {
-        pins.digitalWritePin(voice_s, 1);
-        control.waitMicros(1000);
-        pins.digitalWritePin(voice_s, 0);
-        control.waitMicros(5000);
-        for (let i = (0); i < 8; i = i + (1))
-        {
-            pins.digitalWritePin(voice_s, 1);
-            if (num & 0x01)
-            {
-                control.waitMicros(1500);
-                pins.digitalWritePin(voice_s, 0);
-                control.waitMicros(500);
-            }
-            else
-            {
-                control.waitMicros(500);
-                pins.digitalWritePin(voice_s, 0);
-                control.waitMicros(1500);
-            }
-            num >>= 1;
-        }
-        pins.digitalWritePin(voice_s, 1);
-        control.waitMicros(400);
-        while (!pins.digitalReadPin(voice_b));
+        // pins.digitalWritePin(voice_s, 1);
+        // control.waitMicros(1000);
+        // pins.digitalWritePin(voice_s, 0);
+        // control.waitMicros(5000);
+        // for (let i = (0); i < 8; i = i + (1))
+        // {
+        //     pins.digitalWritePin(voice_s, 1);
+        //     if (num & 0x01)
+        //     {
+        //         control.waitMicros(1500);
+        //         pins.digitalWritePin(voice_s, 0);
+        //         control.waitMicros(500);
+        //     }
+        //     else
+        //     {
+        //         control.waitMicros(500);
+        //         pins.digitalWritePin(voice_s, 0);
+        //         control.waitMicros(1500);
+        //     }
+        //     num >>= 1;
+        // }
+        // pins.digitalWritePin(voice_s, 1);
+        // control.waitMicros(400);
+        // while (!pins.digitalReadPin(voice_b));
         // let tmpTmp;
         // let tmpNumber, result;
         // tmpTmp = false;
