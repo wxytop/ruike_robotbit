@@ -357,10 +357,10 @@ namespace robotbit {
         let tmpNumber, result;
         tmpTmp = false;
         tmpNumber = num;
-        tmpNumber = num - (num / 10000) * 10000;
+        tmpNumber = num - Math.floor(num / 10000) * 10000;
         for (let i = 3; i >= 1; i = i + (-1))
         {
-            result = tmpNumber /Math.pow(10,i);
+            result = Math.floor(tmpNumber /Math.pow(10,i));
             tmpNumber = tmpNumber - result * Math.pow(10,i);
             if (result)
             {
