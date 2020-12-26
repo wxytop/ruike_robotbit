@@ -377,7 +377,6 @@ namespace robotbit {
         pins.digitalWritePin(voice_s, 1);
         control.waitMicros(400);
         while (!pins.digitalReadPin(voice_b));
-    }
         // let tmpTmp;
         // let tmpNumber, result;
         // tmpTmp = false;
